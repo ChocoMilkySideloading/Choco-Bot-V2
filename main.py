@@ -101,4 +101,6 @@ async def joke(interaction: discord.Interaction):
     ]
     await interaction.response.send_message(random.choice(jokes))
 
-bot.run("YOUR_BOT_TOKEN_HERE")
+import os
+bot.run(os.getenv("DISCORD_TOKEN"))
+
