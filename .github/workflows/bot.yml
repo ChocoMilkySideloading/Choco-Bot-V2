@@ -3,7 +3,7 @@ name: Run Discord Bot
 on:
   schedule:
     - cron: '0 * * * *'  # runs every hour on the hour
-  workflow_dispatch:     # allows manual run
+  workflow_dispatch:     # manual trigger
 
 jobs:
   run-bot:
@@ -23,5 +23,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run bot
+      env:
+        DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
       run: |
         python main.py
