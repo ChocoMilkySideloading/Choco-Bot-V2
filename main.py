@@ -1,3 +1,4 @@
+import os
 import discord
 from discord.ext import commands
 from discord import app_commands
@@ -15,6 +16,13 @@ tree = bot.tree
 async def on_ready():
     await tree.sync()
     print(f"✅ Logged in as {bot.user} | Slash commands synced.")
+
+TOKEN = os.getenv('DISCORD_TOKEN')
+if TOKEN is None:
+    raise ValueError("No Discord token found in environment variables!")
+
+bot.run(TOKEN)
+
 
 # /pfp
 @tree.command(name="pfp", description="Get a user's profile picture.")
